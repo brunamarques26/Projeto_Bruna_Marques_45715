@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Paper Revision Machine</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.2/pdfmake.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.2/vfs_fonts.js"></script>
+	</head>
+	<body>
+		<header>
+			<div style="display:flex; align-items: center;">
+				
+				<img src="images/logowhite.png" alt="Logo" style="height: 50px; margin-right: 20px;">
+			</div>
+		</header>
+		<div class="container">
+			<button id="back-to-top"><span class="material-symbols-outlined">
+			expand_less
+			</span></button>
+			<div class="left">
+				<a href="#" class="scroll-to-top">
+				<i class="fa fa-arrow-up"></i>
+				</a>
+				<nav>
+					<ul>
+						<li><a href="#abstract">Abstract</a></li>
+						<li><a href="#keywords">Keywords</a></li>
+						<li><a href="#section">Section and Sub-section</a></li>
+						<li><a href="#mathematical">Mathematical expressions</a></li>
+						<li><a href="#introduction">Introduction</a></li>
+						<li><a href="#state-of-art">State-of-art & references</a></li>
+						<li><a href="#figures">Figures & Tables</a></li>
+						<li><a href="#remaining">Remaining parts </a></li>
+					</ul>
+				</nav>
+
+
+
+				<form>
+					<!-- GENERAL -------------------------------------------------------------------------------------------------------->
+					
+					<h3 id="general-questions">General Questions</h3>
+					
+					<label class="label">What is the title of the paper?</label>
+					
+					<input type="text" id="titleInput" name="title">
+
+
+					<label class="label">What is the length of the paper (number of pages)?</label>
+					
+					<input type="number" id="lengthInput" name="npages" min="1" max="200" step="1" >
+
+					
+					<label class="label">To which type of venue was this paper submitted to?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="journalInput" name="typepaper" value="Journal">
+						<label class="radio-label" for="journalInput" onclick="scorePerType(journalInput.value)">Journal</label>
+					
+						<input class="radio-input" type="radio" id="conferenceInput" name="typepaper" value="Conference">
+						<label class="radio-label" for="conferenceInput" onclick="scorePerType(conferenceInput.value)">Conference</label>
+					
+						<input class="radio-input" type="radio" id="workshopInput" name="typepaper" value="Workshop">
+						<label class="radio-label" for="workshopInput" onclick="scorePerType(workshopInput.value)">Workshop</label>
+					
+						<input class="radio-input" type="radio" id="otherInput" name="typepaper" value="Other">
+						<label class="radio-label" for="otherInput" onclick="scorePerType(otherInput.value)">Other</label>
+					
+					</div>
+
+					
+					<label class="label">Which acronym or abbreviation would you use to describe this Journal?</label>
+					
+					<input type="text" id="acronymInput" name="acronym">
+
+					
+					<label class="label">Include date of revision?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="date-revision-yes" name="revisiondate" value="sim">
+						<label class="radio-label" for="date-revision-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="date-revision-no" name="revisiondate" value="nao">
+						<label class="radio-label" for="date-revision-no">No</label>
+					
+					</div>
+					
+					
+					<!-- ABSTRACT ---------------------------------------------------------------------------------------------->
+					
+					<h3 id="abstract">Abstract</h3>
+					
+					
+					<label class="label">Is the Abstract concise and straight to the point?</label>
+					
+					<input class="checkbox-input" type="checkbox" id="abstract1" name="abstract" value="Yes.">
+					<label class="checkbox-label" for="abstract1" >Yes</label>
+					
+					<input class="checkbox-input" type="checkbox" id="abstract2" name="abstract" value="Abstract could be safely made shorter.">
+					<label class="checkbox-label" for="abstract2">Abstract could be made shorter.</label>
+					
+					<input class="checkbox-input" type="checkbox" id="abstract3" name="abstract" value="Abstract does not introduce the addressed problem in an adequate manner.">
+					<label class="checkbox-label" for="abstract3" > Abstract fails to briefly introduce the subject or problem.</label>
+					
+					<input class="checkbox-input" type="checkbox" id="abstract4" name="abstract" value="Abstract should include a brief description of the approach.">
+					<label class="checkbox-label" for="abstract4">Abstract does not include brief description of approach.</label>
+					
+					<input class="checkbox-input" type="checkbox" id="abstract5" name="abstract" value="Abstract should concisely mention main results and novelty.">
+					<label class="checkbox-label" for="abstract5">Abstract does not include achievements or main results.</label>
+					
+					
+					
+					<button class="comment-button" type="button" onclick="showFieldComentario('but-abstract')">Add a comment about this section.</button>
+					<div id="but-abstract">
+						<textarea id="abstract-comment-input" name="message" rows="4" cols="40"></textarea>
+					</div>
+					<!-- KEYWORDS -->
+					
+					<h3 id="keywords">Keywords</h3>
+					
+					
+					<label class="label">Do you consider the list of keywords appropriate (and sufficient)?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="keywords-yes" name="keywords" value="sim">
+						<label class="radio-label" for="keywords-yes" onclick="hideField('miss-keywords'); hideField('remove-keywords'); hideField('keywords-report');hideField('keywords-report-2')" >Yes</label>
+					
+						<input class="radio-input" type="radio" id="keywords-no" name="keywords" value="nao">
+						<label class="radio-label" for="keywords-no" onclick="showField('miss-keywords'); showField('remove-keywords'); showField('keywords-report');showField('keywords-report-2')">No</label>
+					
+						
+					
+						<div id="miss-keywords">
+							<label class="label">Examples of keywords that are missing?</label>
+							<input type="text" id="keywords-missing">
+						</div>
+
+						<div id="remove-keywords">
+							<label class="label">Examples of keywords that should be removed?</label>
+							<input type="text" id="keywords-removed">
+						</div>
+					</div>
+					
+					
+					<button class="comment-button" type="button" onclick="showFieldComentario('but-keywords')">Add a comment about this section.</button>
+					<div id="but-keywords">
+						<textarea id="keywords-comment-input" name="message" rows="4" cols="40"></textarea>
+
+					</div>
+					<!-- SECTION & SUB-SECTION -->
+					
+					<h3 id="section">Section and Sub-section</h3>
+					
+					
+					<label class="label">Is the main title of the paper duly capitalized?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="titleCapitalizedYes" name="capitalization" value="sim" onclick="hideField('section-1-report');">
+						<label class="radio-label" for="titleCapitalizedYes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="titleCapitalizedNo" name="capitalization" value="Title of paper is not duly capitalized."  onclick="showField('section-1-report');">
+						<label class="radio-label" for="titleCapitalizedNo">No</label>
+					
+						
+					
+						
+					
+						<label class="label">Is capitalization of (sub)section titles consistent? </label>
+					
+						<input class="radio-input" type="radio" id="section-capitalized-yes" name="capitalization-2" value="sim" onclick="hideField('section-2-report');">
+						<label class="radio-label" for="section-capitalized-yes" >Yes</label>
+					
+						<input class="radio-input" type="radio" id="section-capitalized-no" name="capitalization-2" value="nao" onclick="showField('section-2-report');">
+						<label class="radio-label" for="section-capitalized-no">No</label><br>
+						
+						<button class="comment-button" type="button" onclick="showFieldComentario('but-section')">Add a comment about this section.</button>
+						<div id="but-section">
+							<textarea id="section-comment-input" name="message" rows="4" cols="40"></textarea>
+	
+						</div>
+					
+						
+					
+						<!-- MATHEMATICAL EXPRESSIONS -->
+					
+						<h3 id="mathematical">Mathematical expressions</h3>
+						
+					
+						<label class="label">Are there mathematical expressions in the manuscript?</label>
+					
+						<input class="radio-input" type="radio" id="mathematical-yes" name="keywords" value="sim">
+						<label class="radio-label" for="mathematical-yes" onclick="showField('mathematical-expressions'); showField('mathematical-inline-report'); showField('mathematical-display-report')">Yes</label>
+					
+						<input class="radio-input" type="radio" id="mathematical-no" name="keywords" value="nao">
+						<label class="radio-label" for="mathematical-no" onclick="hideField('mathematical-expressions'); hideField('mathematical-inline-report'); hideField('mathematical-display-report')">No</label>
+
+					
+						<div id="mathematical-expressions">
+							
+					
+							<label class="label">Are inline mathematical expressions correctly typed?  </label>
+					
+							<div class="inline-inputs">
+							<input class="radio-input" type="radio" id="inline-mathematical-yes" name="mathematical" value="sim">
+							<label class="radio-label" for="inline-mathematical-yes" onclick="hideField('identify-section'); hideField('mathematical-inline-report')" >Yes</label>  <!--- colocar isto no onclik se for para apagar o texto do input deleteTextInput('some-work-Input'), -->
+					
+							<input class="radio-input" type="radio" id="inline-mathematical-no" name="mathematical" value="nao">
+							<label class="radio-label" for="inline-mathematical-no" onclick="showField('identify-section'); showField('mathematical-inline-report')">No</label>
+							</div>
+
+
+							
+
+							
+							<div id="identify-section">
+								<label class="label">Care to identify a section where this aspect needs some work? <span class="help-text" style="font-size: 0.7em;">Use "sections 1, 2 and 4" format</span> </label>
+								<input type="text" id="some-work-Input" name="some-work">
+							</div>
+							
+					
+					
+							<label class="label">Are mathematical expressions in display math mode part of phrases (i.e., treated as first class citizens)?  </label>
+							<input class="radio-input" type="radio" id="display-mathematical-yes" name="mathematical-2" value="sim" onclick="showField('mathematical-display-report')">
+							<label class="radio-label" for="display-mathematical-yes" >Yes</label>
+					
+							<input class="radio-input" type="radio" id="display-mathematical-no" name="mathematical-2" value="nao" onclick="hideField('mathematical-display-report')">
+							<label class="radio-label" for="display-mathematical-no">No</label>
+					
+					
+						</div>
+					</div>
+					<button class="comment-button" type="button" onclick="showFieldComentario('mathematical-expressions-2')">Add a comment about this section.</button>
+					<div id="mathematical-expressions-2">
+						<textarea id="mathematical-expressions-comment-input" name="message" rows="4" cols="40"></textarea>
+					</div>
+					<!-- INTRODUCTION ------------------------->
+					
+					<h3 id="introduction">Introduction</h3>
+				
+					
+					<label class="label">This section <b>lacks</b> a better introduction to the subject at hands.</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="introduction-1-yes" name="introduction-1" value="sim" onclick="showField('introduction-1-report')">
+						<label class="radio-label" for="introduction-1-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="introduction-1-no" name="introduction-1" value="nao" onclick="hideField('introduction-1-report')">
+						<label class="radio-label" for="introduction-1-no">No</label>
+					
+					</div>
+					
+					
+					
+					
+					<label class="label">This section <b>lacks</b> a better description of the addressed problem.</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="introduction-2-yes" name="introduction-2" value="sim" onclick="showField('introduction-2-report')">
+						<label class="radio-label" for="introduction-2-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="introduction-2-no" name="introduction-2" value="nao" onclick="hideField('introduction-2-report')" >
+						<label class="radio-label" for="introduction-2-no">No</label>
+					
+					</div>
+					
+					
+					
+					
+					<label class="label"> This section does adequately identify the novelty of the described work.</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="introduction-3-yes" name="introduction-3" value="sim" onclick="hideField('introduction-3-report')">
+						<label class="radio-label" for="introduction-3-yes" >Yes</label>
+					
+						<input class="radio-input" type="radio" id="introduction-3-no" name="introduction-3" value="nao" onclick="showField('introduction-3-report')">
+						<label class="radio-label" for="introduction-3-no">No</label>
+					
+					</div>
+					
+					
+					
+					
+					<label class="label">  The structure of the paper is correctly described at the end of the section.</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="introduction-4-yes" name="introduction-4" value="sim" onclick="hideField('introduction-4-report')">
+						<label class="radio-label" for="introduction-4-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="introduction-4-no" name="introduction-4" value="nao" onclick="showField('introduction-4-report')">
+						<label class="radio-label" for="introduction-4-no">No</label>
+					
+					</div>
+					
+					
+					<button class="comment-button" type="button" onclick="showFieldComentario('introduction-comment')">Add a comment about this section.</button>
+					<div id="introduction-comment">
+						<textarea id="introduction-comment-input" name="message" rows="4" cols="40"></textarea>
+					</div>
+					<!-- State-of-art or related works & references -->
+					
+					<h3 id="state-of-art">State-of-the-Art or Related Works & References</h3>
+					<p>Are you of the opinion that:</p>
+				
+					
+					<label class="label">The State-of-the-Art or Related Works are correctly covered in the paper.</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="references-1-yes" name="references-1" value="sim"  onclick="hideField('references-1-report')">
+						<label class="radio-label" for="references-1-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="references-1-no" name="references-1" value="nao"  onclick="showField('references-1-report')">
+						<label class="radio-label" for="references-1-no">No</label>
+					
+					</div>
+					
+					
+					
+					
+					<label class="label">The State-of-the-Art or Related Works would benefit from the inclusion of a comparative table?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="references-2-yes" name="references-2" value="sim" onclick="showField('references-2-report')">
+						<label class="radio-label" for="references-2-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="references-2-no" name="references-2" value="nao" onclick="hideField('references-2-report')">
+						<label class="radio-label" for="references-2-no">No</label>
+					
+					</div>
+					
+					
+					
+					
+					<label class="label">Are recent references missing from the description?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="references-3-yes" name="references-3" value="sim" onclick="showField('references-3-report')">
+						<label class="radio-label" for="references-3-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="references-3-no" name="references-3" value="nao" onclick="hideField('references-3-report')">
+						<label class="radio-label" for="references-3-no">No</label>
+					
+					</div>
+					
+					
+					
+					
+					<label class="label">Is the list of references complete and coherent?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="references-4-yes" name="references-4" value="sim">
+						<label class="radio-label" for="references-4-yes" onclick="hideField('list-references')">Yes</label>
+					
+						<input class="radio-input" type="radio" id="references-4-no" name="references-4" value="nao">
+						<label class="radio-label" for="references-4-no" onclick="showField('list-references')">No</label>
+					
+					</div>
+
+
+					
+					
+					<div id="list-references">
+
+						<label class="label">Are authors correctly listed in the references?</label>
+					
+						<div class="inline-inputs">
+							<input class="radio-input" type="radio" id="references-5-yes" name="references-5" value="sim">
+							<label class="radio-label" for="references-5-yes" onclick="hideField('list-references-problem-1'); hideField('list-references-problem-1-2'); hideField('references-4-report')">Yes</label>
+					
+							<input class="radio-input" type="radio" id="references-5-no" name="references-5" value="nao">
+							<label class="radio-label" for="references-5-no" onclick="showField('list-references-problem-1'); showField('list-references-problem-1-2'); showField('references-4-report')">No</label>
+					
+						</div>
+						<div id="list-references-problem-1">
+							<label class="label">Indicate the references with such problems<span class="help-text" style="font-size: 0.7em;">Use "[x], [y] and [z]" format</span></label>
+					
+							<input type="text" id="list-references-problem-1-input" name="title">
+						</div>
+
+						<div id="list-references-problem-1-2">
+							<label class="label">Indicate a reference with no such problem<span class="help-text" style="font-size: 0.7em;">Use "[x]" format</span></label>
+					
+							<input type="text" id="list-references-problem-1-2-input" name="title">
+						</div>
+						<label class="label">Are titles of references correctly/consistently capitalized?</label>
+					
+						<div class="inline-inputs">
+							<input class="radio-input" type="radio" id="references-6-yes" name="references-6" value="sim">
+							<label class="radio-label" for="references-6-yes" onclick="hideField('list-references-problem-2'); hideField('list-references-problem-2-2'); hideField('references-5-report')">Yes</label>
+					
+							<input class="radio-input" type="radio" id="references-6-no" name="references-6" value="nao">
+							<label class="radio-label" for="references-6-no" onclick="showField('list-references-problem-2'); showField('list-references-problem-2-2'); showField('references-5-report')">No</label>
+					
+						</div>
+						<div id="list-references-problem-2">
+							<label class="label">Indicate the references with such problems<span class="help-text" style="font-size: 0.7em;">Use "[x], [y] and [z]" format</span></label>
+					
+							<input type="text" id="list-references-problem-2-input" name="title">
+						</div>
+
+						<div id="list-references-problem-2-2">
+							<label class="label">Indicate a reference with no such problem<span class="help-text" style="font-size: 0.7em;">Use "[x]" format</span></label>
+					
+							<input type="text" id="list-references-problem-2-2-input" name="title">
+						</div>
+
+
+						<label class="label">Are names of venues correctly listed in the references?</label>
+					
+						<div class="inline-inputs">
+							<input class="radio-input" type="radio" id="references-7-yes" name="references-7" value="sim">
+							<label class="radio-label" for="references-7-yes" onclick="hideField('list-references-problem-3'); hideField('list-references-problem-3-2'); hideField('references-6-report')">Yes</label>
+					
+							<input class="radio-input" type="radio" id="references-7-no" name="references-7" value="nao">
+							<label class="radio-label" for="references-7-no" onclick="showField('list-references-problem-3'); showField('list-references-problem-3-2'); showField('references-6-report')">No</label>
+					
+						</div>
+						<div id="list-references-problem-3">
+							<label class="label">Indicate the references with such problems<span class="help-text" style="font-size: 0.7em;">Use "[x], [y] and [z]" format</span></label>
+					
+							<input type="text" id="list-references-problem-3-input" name="title">
+						</div>
+
+						<div id="list-references-problem-3-2">
+							<label class="label">Indicate a reference with no such problem<span class="help-text" style="font-size: 0.7em;">Use "[x]" format</span></label>
+					
+							<input type="text" id="list-references-problem-3-2-input" name="title">
+						</div>
+
+						<label class="label">Is the year missing from any reference?</label>
+					
+						<div class="inline-inputs">
+							<input class="radio-input" type="radio" id="references-8-yes" name="references-8" value="sim" >
+							<label class="radio-label" for="references-8-yes" onclick="showField('list-references-problem-4'); showField('references-7-report')" >Yes</label>
+					
+							<input class="radio-input" type="radio" id="references-8-no" name="references-8" value="nao"  >
+							<label class="radio-label" for="references-8-no" onclick="hideField('list-references-problem-4'); hideField('references-7-report')">No</label>
+					
+						</div>
+						<div id="list-references-problem-4">
+							<label class="label">Indicate the references with such problems<span class="help-text" style="font-size: 0.7em;">Use "[x], [y] and [z]" format</span></label>
+					
+							<input type="text" id="list-references-problem-4-input" name="title">
+						</div>
+						<label class="label">Is the URL missing from electronic references?</label>
+					
+						<div class="inline-inputs">
+							<input class="radio-input" type="radio" id="references-9-yes" name="references-9" value="sim">
+							<label class="radio-label" for="references-9-yes" onclick="showField('list-references-problem-5'); showField('references-9-report')" >Yes</label>
+					
+							<input class="radio-input" type="radio" id="references-9-no" name="references-9" value="nao">
+							<label class="radio-label" for="references-9-no" onclick="hideField('list-references-problem-5'); hideField('references-9-report')" >No</label>
+					
+						</div>
+						<div id="list-references-problem-5">
+							<label class="label">Indicate the references with such problems.<span class="help-text" style="font-size: 0.7em;">Use "[x], [y] and [z]" format</span></label>
+					
+							<input type="text" id="list-references-problem-5-input" name="title">
+						</div>
+						<label class="label"> Is the date of last access missing from electronic references?</label>
+					
+						<div class="inline-inputs">
+							<input class="radio-input" type="radio" id="references-10-yes" name="references-10" value="sim">
+							<label class="radio-label" for="references-10-yes" onclick="showField('list-references-problem-6')">Yes</label>
+					
+							<input class="radio-input" type="radio" id="references-10-no" name="references-10" value="nao">
+							<label class="radio-label" for="references-10-no" onclick="hideField('list-references-problem-6')" >No</label>
+					
+						</div>
+						<div id="list-references-problem-6">
+							<label class="label">Indicate the references with such problems.<span class="help-text" style="font-size: 0.7em;">Use "[x], [y] and [z]" format</span></label>
+					
+							<input type="text" id="list-references-problem-6-input" name="title">
+						</div>
+					</div>
+					<button class="comment-button" type="button" onclick="showFieldComentario('state-of-art-comment')">Add a comment about this section.</button>
+					<div id="state-of-art-comment">
+						<textarea id="state-of-art-comment-input" name="message" rows="4" cols="40"></textarea>
+					</div>
+
+					<!-- Figures & Tables------------------------------------------------------------------------------------------------------------------------- -->
+					
+					<h3 id="figures">Figures & Tables</h3>
+					
+					
+					<label class="label">Is the quality of figures adequate?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="figures-1-yes" name="figures-1" value="sim">
+						<label class="radio-label" for="figures-1-yes" onclick="hideField('list-figures-problem-1'); hideField('figures-1-report')">Yes</label>
+					
+						<input class="radio-input" type="radio" id="figures-1-no" name="figures-1" value="nao">
+						<label class="radio-label" for="figures-1-no" onclick="showField('list-figures-problem-1'); showField('figures-1-report')">No</label>
+					
+					</div>
+					
+					
+					<div id="list-figures-problem-1">
+						<label class="label">Which one(s)? <span class="help-text" style="font-size: 0.7em;">Indicate just the number of figure(s)</span> </label>
+					
+						<input type="text" id="list-figures-problem-1-input" name="title">
+					</div>
+					
+					
+					<label class="label">Is the font size in figures adequate?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="figures-2-yes" name="figures-2" value="sim">
+						<label class="radio-label" for="figures-2-yes" onclick="hideField('list-figures-problem-2'); hideField('figures-2-report')">Yes</label>
+					
+						<input class="radio-input" type="radio" id="figures-2-no" name="figures-2" value="nao">
+						<label class="radio-label" for="figures-2-no" onclick="showField('list-figures-problem-2'); showField('figures-2-report')">No</label>
+					</div>
+					
+					
+					<div id="list-figures-problem-2">
+						<label class="label">Which one(s)? <span class="help-text" style="font-size: 0.7em;">Indicate just the number of figure(s)</span></label>
+					
+						<input type="text" id="list-figures-problem-2-input" name="title">
+					</div>
+					
+					
+					<label class="label">Are captions concise and complete?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="figures-3-yes" name="figures-3" value="sim" onclick="hideField('figures-3-report')">
+						<label class="radio-label" for="figures-3-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="figures-3-no" name="figures-3" value="nao" onclick="showField('figures-3-report')">
+						<label class="radio-label" for="figures-3-no">No</label>
+					
+					</div>
+					
+					
+					
+					
+					<label class="label">Are all figures and tables mentioned/discussed in the text?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="figures-4-yes" name="figures-4" value="sim">
+						<label class="radio-label" for="figures-4-yes" onclick="hideField('list-figures-problem-4'); hideField('figures-4-report')">Yes</label>
+					
+						<input class="radio-input" type="radio" id="figures-4-no" name="figures-4" value="nao">
+						<label class="radio-label" for="figures-4-no" onclick="showField('list-figures-problem-4'); showField('figures-4-report')">No</label>
+					
+					</div>
+					
+					
+					<div id="list-figures-problem-4">
+						<label class="label">Write down an example of such occurrences <span class="help-text" style="font-size: 0.8em;">E.g., "figure 1" format</span> </label>
+					
+						<input type="text" id="list-figures-problem-4-input" name="title">
+					</div>
+					<button class="comment-button" type="button" onclick="showFieldComentario('figures-comment')">Add a comment about this section.</button>
+					<div id="figures-comment">
+						<textarea id="figures-comment-input" name="message" rows="4" cols="40"></textarea>
+					</div>
+
+					<!-- Remaining Parts  ------------------------------------------------------------------------------------------------------------------------- -->
+					
+					<h3 id="remaining">Remaining Parts</h3>
+					
+					
+					<label class="label">Is the number of tables adequate?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="remaining-1-yes" name="remaining-1" value="sim">
+						<label class="radio-label" for="remaining-1-yes" onclick="hideField('list-remaining-problem-1'); hideField('remaining-1-report'); hideField('remaining-1-2-report')">Yes</label>
+					
+						<input class="radio-input" type="radio" id="remaining-1-no" name="remaining-1" value="nao">
+						<label class="radio-label" for="remaining-1-no" onclick="showField('list-remaining-problem-1'); showField('remaining-1-report'); showField('remaining-1-2-report')">No</label>
+					
+					</div>
+					
+					
+					<div id="list-remaining-problem-1">
+						<label class="label">Do you suggest inclusion of additional tables?</label>
+					
+						<div class="inline-inputs">
+							<input class="radio-input" type="radio" id="remaining-2-yes" name="remaining-2" value="sim">
+							<label class="radio-label" for="remaining-2-yes" onclick="showField('list-remaining-problem-2'); hideField('list-remaining-problem-3'); showField('remaining-1-report'); hideField('remaining-1-2-report')">Yes</label>
+					
+							<input class="radio-input" type="radio" id="remaining-2-no" name="remaining-2" value="nao">
+							<label class="radio-label" for="remaining-2-no" onclick="showField('list-remaining-problem-3'); hideField('list-remaining-problem-2'); showField('remaining-1-2-report'); hideField('remaining-1-report')">No</label>
+					
+						</div>
+						<div id="list-remaining-problem-2">
+							<label class="label">Please describe the tables to be included:</label>
+					
+							<input type="text" id="list-remaining-problem-2-include" name="title">
+						</div>
+						<div id="list-remaining-problem-3">
+							<label class="label">Please describe the tables that should be removed:</label>
+					
+							<input type="text" id="list-remaining-problem-2-remove" name="title">
+						</div>
+					</div>
+					
+					
+					<label class="label">Is the number of figures adequate?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="remaining-3-yes" name="remaining-3" value="sim">
+						<label class="radio-label" for="remaining-3-yes" onclick="hideField('list-remaining-problem-4'); hideField('remaining-2-report'); hideField('remaining-2-2-report')">Yes</label>
+					
+						<input class="radio-input" type="radio" id="remaining-3-no" name="remaining-3" value="nao">
+						<label class="radio-label" for="remaining-3-no" onclick="showField('list-remaining-problem-4'); showField('remaining-2-report'); showField('remaining-2-2-report')">No</label>
+					
+					</div>
+					
+					
+					<div id="list-remaining-problem-4">
+						<label class="label">Do you suggest inclusion of additional figures?</label>
+					
+						<div class="inline-inputs">
+							<input class="radio-input" type="radio" id="remaining-4-yes" name="remaining-4" value="sim">
+							<label class="radio-label" for="remaining-4-yes" onclick="showField('list-remaining-problem-5'); hideField('list-remaining-problem-6'); showField('remaining-2-report'); hideField('remaining-2-2-report')">Yes</label>
+					
+							<input class="radio-input" type="radio" id="remaining-4-no" name="remaining-4" value="nao">
+							<label class="radio-label" for="remaining-4-no" onclick="showField('list-remaining-problem-6'); hideField('list-remaining-problem-5'); showField('remaining-2-2-report'); hideField('remaining-2-report')">No</label>
+					
+						</div>
+						<div id="list-remaining-problem-5">
+							<label class="label">Please describe the figures to be included:</label>
+					
+							<input type="text" id="list-remaining-problem-5-include" name="title">
+						</div>
+						<div id="list-remaining-problem-6">
+							<label class="label">Please describe the figures that should be removed:</label>
+					
+							<input type="text" id="list-remaining-problem-5-remove" name="title">
+						</div>
+					</div>
+					
+					
+					<label class="label">Is the length of the paper/explanation adequate?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="remaining-5-yes" name="remaining-5" value="sim">
+						<label class="radio-label" for="remaining-5-yes" onclick="hideField('list-remaining-problem-7'); hideField('remaining-3-report'); hideField('remaining-3-2-report')">Yes</label>
+					
+						<input class="radio-input" type="radio" id="remaining-5-no" name="remaining-5" value="nao">
+						<label class="radio-label" for="remaining-5-no" onclick="showField('list-remaining-problem-7'); showField('remaining-3-report'); showField('remaining-3-2-report')">No</label>
+					
+					</div>
+					
+					
+					<div id="list-remaining-problem-7">
+						<label class="label"> Do you suggest reducing the size of paper?</label>
+					
+						<div class="inline-inputs">
+							<input class="radio-input" type="radio" id="remaining-6-yes" name="remaining-6" value="sim">
+							<label class="radio-label" for="remaining-6-yes" onclick="showField('list-remaining-problem-8'); hideField('list-remaining-problem-9'); showField('remaining-3-report'); hideField('remaining-3-2-report')">Yes</label>
+					
+							<input class="radio-input" type="radio" id="remaining-6-no" name="remaining-6" value="nao">
+							<label class="radio-label" for="remaining-6-no" onclick="showField('list-remaining-problem-9'); hideField('list-remaining-problem-8'); showField('remaining-3-2-report'); hideField('remaining-3-report') ">No</label>
+					
+						</div>
+						<div id="list-remaining-problem-8">
+							<label class="label">Please provide an example of what can be removed/made shorter:</label>
+					
+							<input type="text" id="list-remaining-problem-8-include" name="title">
+						</div>
+						<div id="list-remaining-problem-9">
+							<label class="label">Please provide an example of what should be included:</label>
+					
+							<input type="text" id="list-remaining-problem-8-remove" name="title">
+						</div>
+					</div>
+					<label class="label">Should the structure/organization of the paper be improved?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="remaining-7-yes" name="remaining-7" value="sim">
+						<label class="radio-label" for="remaining-7-yes" onclick="showField('list-remaining-problem-10'); showField('remaining-4-report')">Yes</label>
+					
+						<input class="radio-input" type="radio" id="remaining-7-no" name="remaining-7" value="nao">
+						<label class="radio-label" for="remaining-7-no" onclick="hideField('list-remaining-problem-10'); hideField('remaining-4-report')">No</label>
+					
+					</div>
+					<div id="list-remaining-problem-10">
+						<label class="label">Write a sentence on what you are proposing to change:</label>
+					
+						<input type="text" id="list-remaining-problem-10-input" name="title">
+					</div>
+
+					<button class="comment-button" type="button" onclick="showFieldComentario('remaining-comment')">Add a comment about this section.</button>
+					<div id="remaining-comment">
+						<textarea id="remaining-comment-input" name="message" rows="4" cols="40"></textarea>
+					</div>
+
+					<h3>Final Questions</h3>
+					
+					
+					<label class="label">How would you rate the quality of writing?</label>
+					
+					<input class="radio-input-quality" type="radio" id="quality-rejection" name="quality" value="l1">
+					<label class="radio-label-quality" for="quality-rejection">Poor enough to grant rejection</label>
+					
+					<input class="radio-input-quality" type="radio" id="quality-poor" name="quality" value="l2">
+					<label class="radio-label-quality" for="quality-poor">Poor</label>
+					
+					<input class="radio-input-quality" type="radio" id="quality-average" name="quality" value="l3">
+					<label class="radio-label-quality" for="quality-average">Average and would benefit from proofreading</label>
+					
+					<input class="radio-input-quality" type="radio" id="quality-above-average" name="quality" value="l4">
+					<label class="radio-label-quality" for="quality-above-average">Above average but would benefit from proofreading</label>
+					
+					<input class="radio-input-quality" type="radio" id="quality-excellent" name="quality" value="l5">
+					<label class="radio-label-quality" for="quality-excellent">Very well written</label>
+					
+					
+					
+					
+					
+					
+					<label class="label">Is the discussion concise and easy to follow?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="concise-yes" name="concise" value="yes">
+						<label class="radio-label" for="concise-yes">Yes</label>
+					  
+						<input class="radio-input" type="radio" id="concise-no" name="concise" value="no">
+						<label class="radio-label" for="concise-no">No</label>
+					  </div>
+
+					
+					
+					
+					
+					<label class="label">Would the flow benefit from a more paused rhythm?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="flow-yes" name="flow" value="sim">
+						<label class="radio-label" for="flow-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="flow-no" name="flow" value="nao">
+						<label class="radio-label" for="flow-no">No</label>
+					
+					</div>
+					
+					
+					
+					
+					<label class="label">Did you found occurrences of the usage of apostrophe to indicate possession?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="apostropheyesInput" name="apostrophe" value="sim">
+						<label class="radio-label" for="apostropheyesInput" onclick="showField('list-apostrophe-problem-1'); showField('final-2-report')">Yes</label>
+					
+						<input class="radio-input" type="radio" id="apostrophenoInput" name="apostrophe" value="nao">
+						<label class="radio-label" for="apostrophenoInput" onclick="hideField('list-apostrophe-problem-1'); hideField('final-2-report')">No</label>
+					
+					</div>
+					
+					
+					
+					<div id="list-apostrophe-problem-1">
+						<label class="label">Write down examples of such occurrences:
+						<span class="help-text" style="font-size: 0.8em;">Copy 2 or 3 occurrences separated by semicolon</span></label>
+					
+						<input type="text" id="list-apostrophe-problem-1-input" name="title">
+					</div>
+					
+					
+					
+					<label class="label">Please write a 2 sentence summary describing the paper and the work <span class="help-text" style="font-size: 0.7em;">Start the sentence with "This paper describes a work on ..."</span> </label>
+					
+					<input type="text" id="summary-input" name="title">
+					
+					
+					
+					
+					<label class="label">It the topic of the paper aligned with the one of the venue?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="topic-yes" name="topic" value="sim">
+						<label class="radio-label" for="topic-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="topic-no" name="topic" value="nao">
+						<label class="radio-label" for="topic-no">No</label>
+					
+					</div>
+					
+					
+					
+					
+					<label class="label">How would you rate the novelty factor of this work?</label>
+					
+					<input class="radio-input-novelty" type="radio" id="novelty-1" name="novelty" value="n1">
+					<label class="radio-label-novelty" for="novelty-1">Very limited</label>
+					
+					<input class="radio-input-novelty" type="radio" id="novelty-2" name="novelty" value="n2">
+					<label class="radio-label-novelty" for="novelty-2">Limited</label>
+										
+					<input class="radio-input-novelty" type="radio" id="novelty-3" name="novelty" value="n3">
+					<label class="radio-label-novelty" for="novelty-3">Average</label>
+										
+					<input class="radio-input-novelty" type="radio" id="novelty-4" name="novelty" value="n4">
+					<label class="radio-label-novelty" for="novelty-4">Above average, though incremental</label>
+										
+					<input class="radio-input-novelty" type="radio" id="novelty-5" name="novelty" value="n5">
+					<label class="radio-label-novelty" for="novelty-5">Above average</label>
+										
+					<input class="radio-input-novelty" type="radio" id="novelty-6" name="novelty" value="n6">
+					<label class="radio-label-novelty" for="novelty-6">Disruptive</label>
+					
+					
+					
+					
+					
+					<label class="label">Was the approach to the problem and method appropriate?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="method-yes" name="method" value="sim">
+						<label class="radio-label" for="method-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="method-no" name="method" value="nao">
+						<label class="radio-label" for="method-no">No</label>
+					
+					</div>
+					
+					
+					
+					
+					<label class="label">Results and conclusions support the claims of the work?</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="results-yes" name="results" value="sim">
+						<label class="radio-label" for="results-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="results-no" name="results" value="nao">
+						<label class="radio-label" for="results-no">No</label>
+					
+					</div>
+					
+					
+					
+					
+
+					<label class="label">Conclusions are concise and wrap up the most important aspects well.</label>
+					
+					<div class="inline-inputs">
+						<input class="radio-input" type="radio" id="conclusions-yes" name="conclusions" value="sim">
+						<label class="radio-label" for="conclusions-yes">Yes</label>
+					
+						<input class="radio-input" type="radio" id="conclusions-no" name="conclusions" value="nao">
+						<label class="radio-label" for="conclusions-no">No</label>
+					
+					</div>
+					
+					
+			</div>
+			</form>
+		</div>
+		
+		<div class="right" style="height: 100%;">
+
+			<div class="comentario">
+				<button id="showCommentInput" onclick="showField('div-comment-input'); showField('intro-comment'); showField('general-comment-span')">Add General Comment</button>
+				<button id="showerrorsInput" onclick="addTable()">Point out typos or errors?</button>
+				<div id="div-comment-input" style="display: none">				
+					<br>
+					<table>
+						<tr>
+							<td><label class="comentario-label" for="general-comment-input">Insert a general comment:</label><br></td>
+						</tr>
+						  <tr>
+							<td><textarea id="general-comment-input"></textarea><br></td>
+							<td><button style="background-color: white; color:black; font-size: 15px;"  onclick="hideField('div-comment-input'); hideField('general-comment-span'); generalComment.textContent = ''; generalCommentInput.value= ''; verifyTextAreasNotGeneral();">X</button></td>
+						  </tr>
+					</table>
+
+				</div>
+			  
+				<div id="table-container"></div>
+			  
+				<button id="showLessButton"  class="expand-less"><span class="material-symbols-outlined" onclick="toggleComentarioSize()"></span></button>
+
+			</div>
+			  
+			<div class="relatorio">
+				<div class="dropdown">
+					<button>Download document &#9662;</button>
+					<div class="dropdown-content">
+					  <button id="pdfoption">PDF (.pdf)</button>
+					  <button id="txtoption">TXT (.txt)</button>
+					</div>
+				  </div>
+
+			<h3><span id="nomeRelatorio"></span></h3>
+			<p id="textrelatorio">
+				<span id="title-report"></span>
+				<span id="length-report"></span>
+				<span id="acronym-report"></span>
+				<span id="summary-report"></span>
+				<span id="data-report"></span>
+				<br>
+				<span id="abstract-report"></span>
+				<br>
+				<span id="keywords-report"></span>
+				<span id="keywords-report-2"></span>
+				<br>
+				<span id="section-1-report"></span>
+				<span id="section-2-report"></span>
+				<br>
+				<span id="mathematical-inline-report"></span>
+				<span id="mathematical-section-report"></span>
+				<span id="mathematical-display-report"></span>
+				<br>
+				<span id="introduction-1-report"></span>
+				<span id="introduction-2-report"></span>
+				<span id="introduction-3-report"></span>
+				<span id="introduction-4-report"></span>
+				<br>
+				<span id="references-1-report"></span>
+				<span id="references-2-report"></span>
+				<span id="references-3-report"></span>
+				<span id="references-4-report"></span>
+				<span id="references-5-report"></span>
+				<span id="references-6-report"></span>
+				<span id="references-7-report"></span>
+				<span id="references-8-report"></span>
+				<span id="references-9-report"></span>
+				<span id="references-10-report"></span>
+				<span id="references-11-report"></span>
+				<br>
+				<span id="figures-1-report"></span>
+				<span id="figures-2-report"></span>
+				<span id="figures-3-report"></span>
+				<span id="figures-4-report"></span>
+				<br>
+				<span id="remaining-1-report"></span>
+				<span id="remaining-1-2-report"></span>
+				<span id="remaining-2-report"></span>
+				<span id="remaining-2-2-report"></span>
+				<span id="remaining-3-report"></span>
+				<span id="remaining-3-2-report"></span>
+				<span id="remaining-4-report"></span>
+				<br>
+				<span id="final-1-report"></span>
+				<span id="final-1-2-report"></span>
+				<span id="final-2-report"></span>
+				<span id="final-3-report"></span>
+				<span id="final-4-report"></span>
+				<span id="final-5-report"></span>
+				<span id="final-6-report"></span>
+				<span id="final-7-report"></span>
+				<br>
+				<span id="intro-comment" style="display: none;">Specific comments authors may consider when preparing future versions of this paper:<br>(This list is non-exhaustive.)</span>
+				<span id="general-comment-span" style="display: none;"><b>General Comment - </b><span id="general-comment-report" style="display: inline;"></span></span>
+				<span id="abstract-comment-span" style="display: none;"><b>Abstract Comment - </b><span id="abstract-comment-report" style="display: inline;"></span></span>
+				<span id="keywords-comment-span" style="display: none;"><b>Keywords Comment - </b><span id="keywords-comment-report" style="display: inline;"></span></span>
+				<span id="section-comment-span" style="display: none;"><b>Section Comment - </b><span id="section-comment-report" style="display: inline;"></span></span>
+				<span id="mathematical-comment-span" style="display: none;"><b>Mathematical Comment - </b><span id="mathematical-comment-report" style="display: inline;"></span></span>
+				<span id="introduction-comment-span" style="display: none;"><b>Introduction Comment - </b><span id="introduction-comment-report" style="display: inline;"></span></span>
+				<span id="references-comment-span" style="display: none;"><b>State-Of-Art Comment - </b><span id="references-comment-report" style="display: inline;"></span></span>
+				<span id="figures-comment-span" style="display: none;"><b>Figures Comment - </b><span id="figures-comment-report" style="display: inline;"></span></span>
+				<span id="remaining-comment-span" style="display: none;"><b>Remaining Parts Comment - </b><span id="remaining-comment-report" style="display: inline;"></span></span>
+
+				<span id="typos-comment" style="display: none;"> <br> Typos, grammatical, syntactical or semantic errors:<br>(this list uses the notation "exp1" -> "exp2" meaning that the suggestion is to replace "exp1" by "exp2")</span>
+				<span id="typos-report"></span>
+				<br>
+		</p>
+		
+					
+		</div>
+		</div>
+	</div>
+		<script src="js/script.js"></script>
+	</body>
+</html>
