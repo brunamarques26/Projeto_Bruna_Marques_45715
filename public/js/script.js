@@ -3635,7 +3635,7 @@ pdfbutton.addEventListener("click", () => {
 		{ text: text }
 	  ],
 	  defaultStyle: {
-		font: 'Roboto' // Use o nome da fonte que você deseja usar
+		font: 'Roboto'
 	  }
 	};
   
